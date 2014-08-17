@@ -1,0 +1,167 @@
+/**
+ * SAWS Parallel Text Viewer Style Sheet
+ *
+ * Author $Author: klawrence $
+ * Project: KCL/SAWS
+ * Last Changed: $LastChangedDate: 2013-04-26 10:50:34 +0100 (Fri, 26 Apr 2013) $
+ * SVN Revision: $Rev: 518 $
+ */
+
+
+html,body { height:100%; padding: 0px; margin: 0px; border: 0px; background-color: #dddddd; overflow: hidden }
+
+::-webkit-scrollbar {
+width: 20px;
+background: gray
+;}
+
+::-webkit-scrollbar-thumb {
+width: 20px;
+background: black;
+}
+
+.bannerSection { width: 100%; background-image: url(http://www.ancientwisdoms.ac.uk/media/website/_a/images/banner-bg.png); background-size: cover; margin: 0px; }
+
+.headerLogo { margin: 0px; margin-top: 6px; margin-left: 10px; clear: none; display: inline}
+
+#noteDialog { display: none; }
+
+#sgvzlDialog { display: none; }
+
+#settingsDialog { display: none; }
+#settingsDialog label { display: inline-block; width: 230px; text-align: right; }
+
+#docSettingsDialog { display: none; }
+#docSettingsDialog label { display: inline-block; width: 230px; text-align: right; }
+
+
+
+#documentMenu { display: none; position: absolute; background-color: black; padding: 0px; color: white; margin: 0px; max-height: 500px; overflow-y: auto;}
+#documentMenu::-webkit-scrollbar {
+width: 20px;
+background: gray
+;}
+
+#documentMenu::-webkit-scrollbar-thumb {
+width: 20px;
+background: black;
+}
+#documentMenu ul { margin: 4px; padding-left: 5px; list-style-type: circle; list-style-position: inside}
+#documentMenu li { font-family: sans-serif; font-size: 9pt; cursor: pointer }
+#documentMenu li.menuItem:hover { color: yellow }
+#documentMenu ul ul { display: none; }
+/*#documentMenu ul li:hover > ul { display: block; }*/
+
+
+
+
+#settingsContainer { position: absolute; right: 0px; top: 0px; z-order: -1; width: 220px; height: 46px; float: right; margin-top: 2px; margin-bottom: 2px }
+#indices { float: left; cursor: pointer; background-image: url(icons/indices.png); min-width: 40px; min-height: 40px; margin-left: 2px; margin-right: 2px }
+#visualiser { float: left; cursor: pointer; background-image: url(icons/visualiser.png); min-width: 40px; min-height: 40px; margin-left: 2px; margin-right: 2px }
+#visualiser.disabled { cursor: wait; background-image: url(icons/visualiser_disabled.png);  }
+#settings { float: left; cursor: pointer; background-image: url(icons/settings.png); min-width: 40px; min-height: 40px; margin-left: 2px; margin-right: 2px }
+#addColumn { float: left; cursor: pointer; background-image: url(icons/addColumn.png); min-width: 40px; min-height: 40px; margin-left: 2px; margin-right: 2px }
+#menuControl { float: left; cursor: pointer; background-image: url(icons/show_menu.png); min-width: 40px; min-height: 40px; margin-left: 2px; margin-right: 2px }
+#menuControl.menuVisible { background-image: url(icons/hide_menu.png); position: relative; top: 4px  }
+
+#footnotes { padding: 0px; height: 20%; width: 100%; display: none; position: relative;}
+#footnotesContent { padding: 0.3em; height: auto; width: auto; background-color: #F5F5DC; border: 2px solid black; overflow-y: auto; }
+
+.footerSection { text-align: center; width: 100%; background-image: url(http://www.ancientwisdoms.ac.uk/media/website/_a/images/banner-bg.png); background-size: cover; margin: 0px; position: relative }
+
+.footerSection span { margin-left: 2em; margin-right: 2em }
+
+
+/* the viewContainer holds all views (columns with documents in them. It's 
+   empty in the source HTML, but is filled by code so that it always contains 
+   at least one documentView. It can contain any number of documentViews. 
+   Adjust the size here to make the usable screen area larger or smaller. */
+
+#viewContainer { width: 100%; height: 90%; margin: 0px; position: relative; background-color: white; overflow: hidden }
+
+/* each individual view of a document is put into a documentView - this is the
+   high-level HTML object that's tiled into the viewContainer. It has one 
+   documentHeader (for controls) and one documentContent (where the actual
+   scrollable document goes. */
+
+#documentViewPrototype { display: none }
+
+.documentView { position: absolute; background-color: white}
+
+.documentContent { position: relative; }
+
+.documentHeader { height: 20px; color: white; background-color: black; margin: 0px; }
+
+.documentHeader p { font-family: sans-serif; font-weight: bold; margin: 0px; position: relative; }
+
+.titleChooser { cursor: pointer; padding-left: 20px; background-image: url(icons/down_arrow.png); background-repeat: no-repeat; background-position: left bottom;}
+
+.documentControlGroup { position: absolute; right: 0px; top: 0px; background: black; z-order: -1 }
+
+.docInformation { cursor: pointer; float: right; margin-right: 10px; margin-top: 2px; background-image: url(icons/info_bw.png); height: 16px; width: 16px; }
+
+.docBibliography { cursor: pointer; float: right; margin-right: 10px; margin-top: 2px; background-image: url(icons/biblio_bw.png); height: 16px; width: 16px; }
+
+.downloadTEI { cursor: pointer; float: right; margin-right: 10px; margin-top: 2px; background-image: url(icons/download_bw.png); height: 16px; width: 16px; }
+
+.docSettings { cursor: pointer; float: right; margin-right: 10px; margin-top: 2px; background-image: url(icons/cog_bw.png); height: 16px; width: 16px; }
+
+.removeColumn { cursor: pointer; float: right; margin-right: 10px; margin-top: 2px; background-image: url(icons/cancel_bw.png); height: 16px; width: 16px; }
+
+.linkControl { cursor: pointer; float: right;  margin-right: 5px; margin-top: 2px; height: 16px; width: 16px; }
+
+.pv-scroll-linked { background-image: url(icons/lock_bw.png) }
+
+.pv-scroll-unlinked { background-image: url(icons/lock_open_bw.png) }
+
+.documentContent { overflow-y: scroll; padding: 1em }
+
+.pv-loadingModal { display: none; position: absolute; z-index: 1000; top: 0; left: 0; height: 100%; width: 100%; background: rgba(255,255,255,.8) url(icons/ajax-loader.gif) 50% 50% no-repeat; }
+
+.loading { overflow: hidden }
+
+.loading .pv-loadingModal { display: block }
+
+.hidden { display: none !important }
+
+/* Styles the tour dialog */
+
+#tour-Dialog { display: none; position: relative; }
+#tour-Arrow { display: none; position: fixed; min-width: 140px; min-height: 140px; background-repeat: no-repeat; z-index: 120; }
+#tour-Arrow.ul { background-image: url(icons/tour_arrow_ul.png); }
+#tour-Arrow.ur { background-image: url(icons/tour_arrow_ur.png); }
+#tour-Arrow.dl { background-image: url(icons/tour_arrow_dl.png); }
+#tour-Arrow.dr { background-image: url(icons/tour_arrow_dr.png); }
+#tour-Button     { position: absolute; bottom: 0px; right: 0px; background-color: #b5d045; border: 1px solid grey; cursor: pointer; margin: 2em; padding: 0.3em 1em 0.3em 1em;  } 
+
+/* Needed for the tour, because a remove column icon won't necessarily be available to point at */
+
+.removeColumnTour { position: relative; display: block; padding: 2px; background-color: black; background-image: url(icons/cancel_bw.png); height: 16px; width: 48px; background-repeat: no-repeat; background-position: center center; }
+
+/* These classes will only be added if the viewer is set into debug mode */
+
+.debug-firstVisible { background-color: green; !important }
+.debug-checking { background-color: yellow !important }
+
+
+/* For styling the indices in the index pop-up */
+
+#indicesDialog  		{ font-size: 14px }
+
+#indicesDialog .index 		{ border-bottom: 1px dotted green }
+
+#indicesDialog .selected 	{ font-weight: bold }
+
+#indicesDialog .letter		{ background-color: black; color: white; margin-top: 3em }
+#indicesDialog .letter > a		{ padding-left: 0.25em; font-size: 150%; font-weight: bold; }
+#indicesDialog .letterGroup		{ background-color: white; color: black; }
+#indicesDialog .specific		{ padding-left: 2em; }
+	
+#indicesDialog .canonical		{ font-weight: bold }
+#indicesDialog .canonical span	{ margin-left: 2em }
+
+#indicesDialog .external	{ margin-left: 1em }
+
+#infoPopup		{ display: none; background-color: white; color: black; font-weight: bold; border: 2px solid black; padding: 0.5em; position: fixed; z-index: 110; min-width: 20px; min-height: 15px; opacity: 0.9 }
+
+.citationBlock	{ margin-top: 0.6em }

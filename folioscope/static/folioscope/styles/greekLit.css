@@ -1,0 +1,7 @@
+/* Content-specific stylesheets for documents in the 
+   greekLit:... family. 
+   all non-comment lines in this file MUST begin ".greekLit " */
+
+/* Fixes missing characters in default unicode fonts */
+.greekLit { font-family: "Lucida Grande","Cardo","Arial Unicode MS","Galilee Unicode Gk","New Athena Unicode","Athena Unicode","Palatino Linotype","Titus Cyberbit Basic","Vusillus Old Face","Alphabetum","Galatia SIL","Code 2000","GentiumAlt","Gentium","Minion Pro","GeorgiaGreek","Vusillus Old Face Italic","Everson Mono","Aristarcoj","Porson","Legendum","Aisa Unicode","Hindsight Unicode","Caslon","Verdana","Tahoma"; }
+

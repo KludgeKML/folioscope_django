@@ -1,0 +1,15 @@
+/* Block View */
+
+div.front {background: white !important; border: 3px solid green !important;}
+div.body {background: white !important; color: white !important; border: 3px solid blue !important; font-size: xx-small !important;}
+div.body div {background: white !important; color: white !important; border: 3px solid pink !important; font-size: xx-small !important;}
+div.body h2 {display:block !important; color: black !important;}
+div.body span {display: none !important;}
+div.body span.other {display: block !important; background: grey !important; color: grey !important; border: 1px solid black !important; font-size: xx-small !important; max-height: 80px !important; overflow: hidden !important;}
+div.body span.descriptiveItem:before {color: black !important; content:attr(id) !important; padding-left: 5px !important;}
+div.body span.descriptiveItem {display: block !important; background: cyan !important; color: cyan !important; border: 1px solid black !important; font-size: xx-small !important; max-height: 20px !important; overflow: hidden !important;}
+div.body span.contentItem:before {color: black !important; content:attr(id) !important; padding-left: 5px !important;}
+div.body span.contentItem {display: block !important; background: red !important; color: red !important; border: 1px solid black !important; font-size: xx-small !important; max-height: 25px !important; overflow: hidden !important;}
+div.body sup {display:none !important;}
+div.body a {display:none !important;}
+div.body span a {display:none !important;}

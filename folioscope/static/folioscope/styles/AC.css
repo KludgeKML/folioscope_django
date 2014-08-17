@@ -1,0 +1,32 @@
+/* Content-specific stylesheets for documents in the 
+   AC folder
+   all non-comment lines in this file MUST begin ".AC " */
+
+.AC .editorial .contentItem { display: block }
+.AC .diplomatic .contentItem { display: inline }
+
+.AC .place-above,.place-top { vertical-align: super }
+
+.AC .place-margin:before { content: "(" }
+.AC .place-margin:after { content: " (mg.))" }
+
+.AC .place-inline:before { content: "(" }
+.AC .place-inline:after { content: " (add.))" }
+
+.AC .hi { font-weight: bold }
+.AC .ACclear { color: gray }
+
+.descriptiveItem .editorial { font-size: 120% }
+
+/* Team Sweden do not want any notes to appear in the diplomatic (orig) 
+   versions of texts */
+
+.diplomatic .pv-inline.general { display: none !important }
+.diplomatic .pv-inline.commentary { display: none !important }
+.diplomatic .pv-inline.source { display: none !important }
+.diplomatic .pv-inline.appNote { display: none !important }
+
+.diplomatic .noteLink.general { display: none !important }
+.diplomatic .noteLink.commentary { display: none !important }
+.diplomatic .noteLink.source { display: none !important }
+.diplomatic .noteLink.appNote { display: none !important }

@@ -1,0 +1,8 @@
+/* Content-specific stylesheets for documents in the 
+   Kek folder
+   all non-comment lines in this file MUST begin ".Kek " */
+
+.Kek .title		{ font-style: italic }
+.Kek .foreign		{ font-style: italic }
+.Kek .other		{ display: block }
+.Kek .contentItem	{ display: inline }

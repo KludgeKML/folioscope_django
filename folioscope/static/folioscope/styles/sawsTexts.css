@@ -1,0 +1,6 @@
+/* Content-specific stylesheets for documents in the 
+   sawsTexts:... family. 
+   all non-comment lines in this file MUST begin ".sawsTexts " */
+
+.sawsTexts p { }
+.sawsTexts .red { color: red }

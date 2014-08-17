@@ -1,0 +1,251 @@
+{% load i18n %}
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>{% trans 'folioscope_title' %}</title>
+	<link rel="stylesheet" href="{% static "folioscope/viewer.css" %}" type="text/css" media="all" title="Default styles" />
+	<link rel="stylesheet" href="{% static "folioscope/document.css" %}" type="text/css" media="all" title="Default styles" />
+	<link rel="stylesheet" href="{% static "folioscope/integration.css" %}" type="text/css" media="all" title="Default styles" />
+    <link rel="stylesheet" href="{% static "folioscope/libraries/jquery-ui.css" %}" />
+
+	<script type="text/javascript" src="{% static "folioscope/libraries/jquery.min.js" %}" ></script>
+	<script type="text/javascript" src="{% static "folioscope/libraries/jquery-ui.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "folioscope/libraries/jquery.equalheights.js" %}"></script>
+	<script type="text/javascript" src="{% static "folioscope/libraries/jquery-queryParser.min.js" %}"></script>
+
+	<script type="text/javascript" src="{% static "folioscope/libraries/compatability.js" %}"></script>
+
+	<script type="text/javascript" src="{% static "folioscope/libraries/shortcuts.js" %}"></script>
+	<script type="text/javascript" src="{% static "folioscope/libraries/positions.js" %}"></script>
+
+	<script type="text/javascript" src="{% static "folioscope/libraries/translations/en.js" %}"></script>
+	<script type="text/javascript">
+		translationMap = en_Translation;
+	</script>
+
+	<script type="text/javascript">
+		document_endpoint = '{{ document_endpoint }}';
+		sparql_endpoint = '{{ sparql_endpoint }}';
+		url_base = '{{ base_url }}';
+	</script>
+	<script type="text/javascript" src="{% static "folioscope/libraries/document.js" %}"></script>
+
+	<script type="text/javascript" src="{% static "folioscope/libraries/viewer.js" %}"></script>
+	<script type="text/javascript" src="{% static "folioscope/libraries/storage.js" %}"></script>
+	<script type="text/javascript" src="{% static "folioscope/libraries/tour.js" %}"></script>
+	<script type="text/javascript" src="{% static "folioscope/libraries/style-manager.js" %}"></script>
+	<script type="text/javascript" src="{% static "folioscope/libraries/tooltip-manager.js" %}"></script>
+
+    <script src="{% static "folioscope/libraries/awld/lib/requirejs/require.min.js" %}" type="text/javascript"></script>
+    <script src="{% static "folioscope/libraries/awld/awld.js" %}" type="text/javascript"></script>
+    <script type="text/javascript">
+	    awld.init();
+    </script>
+
+	<script type="text/javascript" src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1","packages":["annotatedtimeline", "corechart", "gauge", "geomap", "geochart", "imagesparkline", "map", "orgchart", "table", "motionchart", "treemap"]}]}'></script>
+	<script type="text/javascript" id="sgvzlr_script" src="{% static "folioscope/libraries/sgvizler.js" %}"></script>
+</head>
+
+<body>
+
+<div class="bannerSection furniture">
+	<a href="/"><img class="headerLogo" src="http://www.ancientwisdoms.ac.uk/media/website/_a/images/saws-logo.png" alt="Sharing Ancient Wisdoms"/></a>
+	<div id="settingsContainer">
+		<span id="indices" title="Indices"></span>
+		<span id="visualiser" class="disabled" title="Visualiser"></span>
+		<span id="settings" title="Change Settings"></span>
+		<span id="addColumn" title="Add Column"></span>
+		<span id="menuControl" class="menuVisible" title="Toggle Menu"></span>
+	</div>
+</div>
+
+<div id="siteMenu" class="furniture">
+	<ul class="inline">
+		<li><a class="navLink selected first" href="/">Home</a></li>
+		<li><a class="navLink" href="/library/">Dynamic Library</a></li>
+		<li><a class="navLink" href="/method/">Methodology</a></li>
+		<li><a class="navLink" href="/future/">Future Work</a></li>
+		<li><a class="navLink" href="/about/">About</a></li>
+		<li><a class="navLink" href="/help/">Help</a></li>
+	</ul>
+</div>
+
+<div id="viewContainer">
+</div>
+
+<div id="footnotes" class="furniture"><div id="footnotesContent">Footnotes</div></div>
+
+<div class="footerSection furniture">
+	<span id="logoLeftContainer">
+		<a href="http://www.heranet.info" title="HERA"><span id="hera"></span></a>
+	</span>
+	<span id="centralLinks">
+		<span id="citationInfo"><a href="">How to cite</a></span>
+		<span id="thanks"><a href="">Thanks</a></span>
+		<span id="tour"><a href="">Tour</a></span>
+		<span id="pv-debug"></span>
+	</span>
+	<span id="logoRightContainer">
+		<a href="http://www.univie.ac.at/en/" title="University of Vienna"><span id="wien"></span></a>
+		<a href="" title=""><span id="uppsala"></span></a>
+		<a href="http://www.kcl.ac.uk/artshums/depts/ddh/index.aspx" title="Digital Humanities at Kings College London"><span id="kings"></span></a>
+		<a href="http://ec.europa.eu/research/fp7/" title="Framework 7"><span id="fp7"></span></a>
+	</span>
+</div>
+
+<!-- Document View Prototype: This section will be copied and duplicated for each document, then placed into the viewContainer -->
+<div class="documentView" id="documentViewPrototype">
+	<div class="documentHeader">
+		<p><span class="titleChooser" title="{% trans 'click_to_choose_document' %}">{% trans 'click_to_choose_document' %}</span>
+			<span class="documentControlGroup">
+		   		<span class="linkControl pv-scroll-linked" title="Toggle linked scrollbars"> </span>
+		   		<span class="removeColumn" title="Remove this column"> </span>
+		   		<span class="docSettings" title="Change Document Settings"> </span>
+		   		<span class="downloadTEI" title="Download TEI"> </span>
+		   		<span class="docBibliography" title="Document Bibliography"> </span>
+		   		<span class="docInformation" title="Document Information"> </span>
+		   	</span>
+		</p>
+	</div>
+	<div class="documentField awld-scope">
+		<div class="documentContent"></div>
+		<div class="pv-loadingModal"></div>
+	</div>
+</div>
+
+<div id="documentMenu"></div>
+
+<div id="infoDialog" title="ERROR"></div>
+
+<div id="indicesDialog" title="Indices">
+	<div class="types">
+	<a href="person">People</a> | <a href="place">Places</a> | <a href="place/type:ethnic">Places (Ethnic)</a> | <a href="name">Names</a>  | <a href="name/type:ethnic">Names (Ethnic)</a>
+	</div>
+	<div class="contents">
+	</div>
+	<div class="pv-loadingModal"></div>
+</div>
+
+<div id="sgvzlDialog" title="Visualisation">
+<div id="sgvzl_example1"
+      data-sgvizler-endpoint="/sesame/repositories/saws"
+      data-sgvizler-query="SELECT DISTINCT ?node   ?node2
+		WHERE {
+		  { ?node ?property ?node2 }
+		  UNION
+		  { ?node2 ?property ?node } .
+		FILTER (?node=$NODE$)
+		}
+		"
+      data-sgvizler-chart="dForceGraph"
+      data-sgvizler-loglevel="0"
+      data-sgvizler-chart-options="is3D=true|title=Number of instances"
+      style="width:800px; height:400px;"></div>
+</div>
+
+<div id="tour-Dialog" title="Tour">
+	<div id="tour-Text"></div>
+	<div id="tour-Button">Next</div>
+</div>
+<div id="tour-Arrow"></div>
+
+<div id="settingsDialog" title="Settings">
+	<form name="settings">
+		<label for="apparatusStyle">Display Apparatus: </label>
+		<select name="apparatusStyle">
+			<option value="inline">Inline with the text</value>
+			<option value="footer">In the footer when highlighted</value>
+			<option value="popUp" selected>As pop-up links</value>
+			<option value="hidden">Hidden</value>
+		</select><br />
+
+		<label for="generalNoteStyle">Display Notes: </label>
+		<select name="generalNoteStyle">
+			<option value="inline">Inline with the text</value>
+			<option value="footer">In the footer when highlighted</value>
+			<option value="popUp" selected>As pop-up links</value>
+			<option value="hidden">Hidden</value>
+		</select><br />
+
+		<label for="commentaryNoteStyle">Display Commentary Notes: </label>
+		<select name="commentaryNoteStyle">
+			<option value="inline">Inline with the text</value>
+			<option value="footer">In the footer when highlighted</value>
+			<option value="popUp" selected>As pop-up links</value>
+			<option value="hidden">Hidden</value>
+		</select><br />
+
+		<label for="sourceNoteStyle">Display Source Notes: </label>
+		<select name="sourceNoteStyle">
+			<option value="inline" selected>Inline with the text</value>
+			<option value="footer">In the footer when highlighted</value>
+			<option value="popUp">As pop-up links</value>
+			<option value="hidden">Hidden</value>
+		</select><br />
+
+		<label for="apparatusNoteStyle">Display Apparatus Notes: </label>
+		<select name="apparatusNoteStyle">
+			<option value="inline">Inline with the text</value>
+			<option value="footer">In the footer when highlighted</value>
+			<option value="popUp">As pop-up links</value>
+			<option value="hidden" selected>Hidden</value>
+		</select><br />
+
+		<label for="hoverBehaviour">Hover Behaviour: </label>
+		<select name="hoverBehaviour">
+			<option value="none">Do nothing</value>
+			<option value="highlight">Highlight only</value>
+			<option value="getRelated" selected>Highlight and mark related</value>
+		</select><br />
+
+		<label for="hoverPopups">Hover Popups: </label>
+		<select name="hoverPopups">
+				<option value="show" selected>Show</value>
+				<option value="hide">Hide</value>
+		</select><br />
+
+		<label for="awldPopups"><a href="http://isawnyu.github.io/awld-js/" class="awld-scope">AWLD</a> popups: </label>
+		<select name="awldPopups">
+				<option value="show" selected>Show</value>
+				<option value="hide">Hide</value>
+		</select><br />
+	</form>
+</div>
+
+
+<div id="docSettingsDialog" title="Document Settings">
+	<form name="docSettings">
+		<label for="lineNumbers">Line Numbers: </label>
+		<select name="lineNumbers">
+			<option value="show" selected>Show</value>
+			<option value="hide">Hide</value>
+		</select><br />
+
+		<label for="pageNumbers">Page Numbers: </label>
+		<select name="pageNumbers">
+			<option value="hide" selected>Hide</value>
+		</select><br />
+
+		<label for="surplusBlocks">Scribal Additions: </label>
+		<select name="surplusBlocks">
+			<option value="show" selected>Show</value>
+			<option value="hide">Hide</value>
+		</select><br />
+
+		<label for="linkIDs">Link IDs: </label>
+		<select name="linkIDs">
+			<option value="show">Show</value>
+			<option value="hide" selected>Hide</value>
+		</select><br />
+	</form>
+</div>
+
+<div id="infoPopup">
+</div>
+
+</body>
+
+</html>

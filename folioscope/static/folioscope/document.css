@@ -1,0 +1,89 @@
+/**
+ * SAWS Parallel Text Base Document Style Sheet
+ *
+ * Author $Author: klawrence $
+ * Project: KCL/SAWS
+ * Last Changed: $LastChangedDate: 2013-04-26 10:50:34 +0100 (Fri, 26 Apr 2013) $
+ * SVN Revision: $Rev: 518 $
+ */
+
+/* contentItems are the individual lines of text. Hovering over one sets the 
+   ciHovered class (this is done in JQuery rather than using the CSS :hover 
+   pseudo-class so that extra processing can happen) for that item and all 
+   matching items. Clicking on a contentItem sets the ciSelected class for 
+   that item and all matching items.
+
+   contentItems contain zero or one segnum items, and zero to many note 
+   items and pb (pagebreak) items */
+   
+.contentItem		{ padding-left: 3px; display: block; padding-bottom: 3px }
+.ciHovered 		{ background-color: #cccccc }
+.ciRelatedToHovered	{ background-color: #eeeeee }
+.ciSelected		{ background-color: #b5d045 }
+.ciRelatedToSelected	{ background-color: #c6d09d }
+
+.ciRelatedToSelected.isShorterVersionOf	{ background-color: #c6d09d }
+.ciRelatedToSelected.isVerbatimOf	{ background-color: #09c69d }
+.ciRelatedToSelected.isTranslationOf	{ color: white; background-color: black; }
+.ciRelatedToHovered.isTranslationOf	{ color: white; background-color: gray; }
+
+[dir=ltr] .linked { background-image: url(icons/marker_ltr.png); background-repeat: repeat-y; background-position: left top; }
+[dir=rtl] .linked { background-image: url(icons/marker_rtl.png); background-repeat: repeat-y; background-position: right top; }
+
+/* page breaks in the source document */
+
+.pb		{ display: block; margin: 3px; font-style: italic; color: red }
+
+/* segnums are the segment numbers displayed to the user in front of each 
+   line */
+
+.segnum { font-weight: bold; color: #777777; }
+
+/* notes are marked spans which when clicked on cause a popup to appear */
+
+/* .noteLink { border-bottom: 1px dotted green; cursor: help } */
+.noteLink { cursor: pointer; text-decoration: underline; color: blue; display: inline; vertical-align: sub; font-size: .83em; }
+
+.doc-apparatusLink { cursor: pointer; text-decoration: underline; color: blue; display: inline; vertical-align: sub; font-size: .83em; }
+
+.doc-noteLink { cursor: pointer; text-decoration: underline; color: blue; display: inline; 
+vertical-align: sub; font-size: .83em; }
+
+/* Apparatus container, which should not be displayed */
+
+div#apparatus { display: none }
+
+/* Notes container, which should not be displayed */
+
+div#notes { display: none }
+
+/* Citation information, which should not be displayed */
+
+div.cite-info { display: none }
+
+
+/* Inline apparatus, notes, commentaries, source notes, and apparatus notes, copied as a span following the text it refers to */
+
+.pv-inline.apparatus { font-style: italic; color: #aaaaff; display: none; font-size: 80% }
+.pv-inline.general { font-style: italic; color: #aaaaff; display: none; font-size: 80% }
+.pv-inline.commentary { font-style: italic; color: #aaaaff; display: none; font-size: 80% }
+.pv-inline.source { font-style: italic; color: #aaaaff; display: none; font-size: 80% }
+.pv-inline.appNote { font-style: italic; color: #aaaaff; display: none; font-size: 80% }
+
+
+.person { border-bottom: 1px green dashed }
+
+.red		{ color: red }
+.bold		{ font-weight: bold }
+.italic		{ font-style: italic } 
+.bold-italic	{ font-weight: bold; font-style: italic }
+.overline	{ text-decoration: overline }
+
+
+/* Information and bibliography sections */
+
+#infoDialog table { margin-top: 2em; margin-bottom: 2em }
+table.item	 { margin-left: 2em }
+table.itemStruct { margin-left: 2em }
+
+.linkID		{ background-color: grey; color: black; font-style: italic; font-weight: bold }

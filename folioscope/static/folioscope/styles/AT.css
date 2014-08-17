@@ -1,0 +1,20 @@
+/* Content-specific stylesheets for documents in the 
+   AT folder
+   all non-comment lines in this file MUST begin ".AT " */
+
+.AT .editorial .contentItem { display: block }
+.AT .diplomatic .contentItem { display: inline }
+
+.AT .place-above,.place-top { vertical-align: super }
+
+.AT .place-margin:before { content: "(" }
+.AT .place-margin:after { content: " (mg.))" }
+
+.AT .place-inline:before { content: "(" }
+.AT .place-inline:after { content: " (add.))" }
+
+.AT .hi { font-weight: bold }
+.AT .unclear { color: gray }
+
+.AT .descriptiveItem .editorial { font-size: 120% }
+
