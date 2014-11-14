@@ -9,5 +9,5 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += i18n_patterns('',
-    url(r'^/?$', include('folioscope.urls')),
+    url(r'^', include('folioscope.urls')),
 )

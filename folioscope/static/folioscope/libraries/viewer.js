@@ -22,14 +22,14 @@ jQuery(function($)
 		viewContainer.setDocumentLibrary(documentLibrary);
 
 		var query = $.getQuery();
-		
+
 		var pathSections = decodeURIComponent(window.location.pathname).split('/');
 		var loadIDBlock = pathSections[pathSections.length - 1];
 		var loadIDSections = loadIDBlock.split('&viewOffsets=')
 
 		var loadIDs = $.getQuery().viewColumns;
 		var offsets = '';
-	
+
 		if (loadIDs !== undefined)
 		{
 			offsets = $.getQuery().viewOffsets;
@@ -37,7 +37,7 @@ jQuery(function($)
 		}
 		else
 		{
-			
+
 			loadIDs = loadIDSections[0];
 			if (loadIDSections.length > 1) offsets = loadIDSections[1];
 			if (loadIDs == '')
@@ -179,11 +179,11 @@ jQuery(function($)
 });
 
 
-/* 
+/*
  * toggleSiteMenu
- * 
+ *
  * Toggles the integrated SAWS menu (put outside of viewContainer because
- * it will probably be moved to an integration class 
+ * it will probably be moved to an integration class
  */
 function toggleSiteMenu ( )
 {
@@ -202,9 +202,9 @@ function toggleSiteMenu ( )
 }
 
 
-/* 
+/*
  * MakeJQueryID
- * 
+ *
  * Escapes xml IDs so that they can be used in JQuery selectors. This is necessary
  * because JQuery uses the "." and ":" characters as specials, and sometimes an item
  * id will have those characters in.
@@ -214,9 +214,9 @@ function makeJQueryID ( myid )
 	return "#" + myid.replace( /(:|\.|\/|\%|\[|\])/g, "\\$1" );
 }
 
-/* 
+/*
  * MakeJQueryClass
- * 
+ *
  * Escapes xml classes so that they can be used in JQuery selectors. This is necessary
  * because JQuery uses the "." and ":" characters as specials, and sometimes an item
  * class will have those characters in.
@@ -305,7 +305,7 @@ viewContainer =
 				linkText: this.translationMap.apparatusNoteLink,
 			},
 		];
-		
+
 		var t = this;
 
 		this.setNoteWatches();
@@ -320,16 +320,16 @@ viewContainer =
 
 		storage.watch('awldPopups', function(newValue)
 		{
-			t.setClassBySelector(".documentField", "awld-scope", 
+			t.setClassBySelector(".documentField", "awld-scope",
 				(newValue == "show" ? true : false));
 			awld.init();
 		});
 
-		this.setClassBySelector(".documentField", "awld-scope", 
+		this.setClassBySelector(".documentField", "awld-scope",
 			(storage.retrieve('awldPopups') == "show" ? true : false));
-		
+
 		this.window.resize(function() { t.onResize(); });
-		
+
 		this.onResize();
 
 		this.createShortcuts();
@@ -391,8 +391,8 @@ viewContainer =
 			{
 				storage.store('hoverPopups', 'show');
 			}
-		});		
-		
+		});
+
 		shortcut.add(controls.toggleLineNumbersKey.shortcut, function()
 		{
 			t.activeView.toggleSetting('lineNumbers', '#docSettingsDialog select[name=lineNumbers]', '#docSettingsDialog');
@@ -509,7 +509,7 @@ viewContainer =
 	openVisualiser: function ( )
 	{
 		if( $('.ciSelected').length > 0 )
-		{	
+		{
 			var value = this.documentLibrary.getFragmentFullID($('.ciSelected').get(0).id);
 			var query = this.visualiserQuery.replace('$NODE$', '<' + value + '>');
 			$('#sgvzl_example1').attr('data-sgvizler-query', query);
@@ -539,7 +539,7 @@ viewContainer =
 			{
 				t.openIndex(t.indexType, t.indexValue, $(this).val());
 			});
-			
+
 			// letters in the alphabet index when clicked change the page displayed
 			$('.index a', indexPage).click(function(event)
 			{
@@ -582,7 +582,7 @@ viewContainer =
 				t.documentLibrary.getDocumentByID(docID, 0, function(callbackID, status, document)
 				{
 					if (status == "")
-					{	
+					{
 						changingView.setDocument(document);
 					}
 					else
@@ -615,7 +615,7 @@ viewContainer =
 
 
 	changeNoteStyles: function (  )
-	{	
+	{
 		var footerRequired = false;
 
 		for (i in this.noteDetails)
@@ -675,7 +675,7 @@ viewContainer =
 	{
 		var windowHeight = this.window.innerHeight();
 		var windowWidth = this.window.innerWidth();
-			
+
 		var furnitureHeight = 0;
 		var rightBorder = 0;
 
@@ -687,14 +687,14 @@ viewContainer =
 
 		$('#footnotesContent').height(1);
 		var oHt = $('#footnotesContent').outerHeight() - 1;
-	
+
 		$('#footnotesContent').height($('#footnotes').height() - oHt);
 
 		this.container
 			.height(windowHeight - furnitureHeight)
 			.width(windowWidth - rightBorder);
-		
-		this.resizeViews();	
+
+		this.resizeViews();
 	},
 
 
@@ -847,11 +847,11 @@ viewContainer =
 
 	/*
 	 	scrollNewViewToMatchLinked
-	 
-	 	Scrolls a view (normally a new view, but it works with any view) so that it 
+
+	 	Scrolls a view (normally a new view, but it works with any view) so that it
 	 	matches the scroll position of the left-most linked view. This function is
 	 	used when a view isn't being opened to a specific position (like a named or
-	 	related ID) but should still match scroll positions in linked documents for 
+	 	related ID) but should still match scroll positions in linked documents for
 	 	consistency.
          */
 	scrollNewViewToMatchLinked: function ( newView )
@@ -874,7 +874,7 @@ viewContainer =
 		populatDocumentCitationDialog
 
 		Adds the citation information for all open documents into the specified
-		dialog. 
+		dialog.
 	*/
 
 	populateDocumentCitationDialog: function ( dialogSelector )
@@ -884,12 +884,12 @@ viewContainer =
 		for (var v in this.views)
 		{
 			var citeInfo = this.views[v].getDocument().getCitationInfo();
-			var link = 'http://www.ancientwisdoms.ac.uk/folioscope/' + 
+			var link = 'http://www.ancientwisdoms.ac.uk/folioscope/' +
 					this.views[v].getDocument().getID();
 
-			allCiteInfo += '<div class="citationBlock">' + 
-						citeInfo['title'] + " (" + 
-						citeInfo['publisher'] + ", " + 
+			allCiteInfo += '<div class="citationBlock">' +
+						citeInfo['title'] + " (" +
+						citeInfo['publisher'] + ", " +
 						citeInfo['year'] + ")<br /><br />" +
 						'Direct link: <a href="' + link + '">' + link + '</a>' +
 						"</div>"
@@ -908,7 +908,7 @@ viewContainer =
 	 	resetViews
 
 	 	Removes all documents from the view container, then reinserts them in order,
-		also puts in the close buttons if there are more than one. Called whenever a 
+		also puts in the close buttons if there are more than one. Called whenever a
 		view is added or removed from the container.
          */
 	resetViews: function ( )
@@ -935,13 +935,13 @@ viewContainer =
 	resizeViews: function ( )
 	{
 		if (this.views.length == 0)
-			return;	
-		
+			return;
+
 		var containerWidth = this.container.width();
 		var documentMargin = 0;
 		//this.views[0].container.outerWidth(true) - this.views[0].container.width();
-		
-		var viewWidth = containerWidth / this.views.length - documentMargin;				
+
+		var viewWidth = containerWidth / this.views.length - documentMargin;
 
 		$('#documentMenu').css('max-height','' + (this.container.height() - 30) + 'px');
 		$('#documentMenu').css('max-width','' + (viewWidth - 30) + 'px');
@@ -953,7 +953,7 @@ viewContainer =
 		{
 			var view = this.views[i];
 			var footerHeight = $('.footerSection').height();
-			
+
 			view.setLeft(left);
 			view.setWidth(viewWidth);
 			view.setHeight(this.container.height() - footerHeight - 12);
@@ -986,13 +986,13 @@ viewContainer =
 	 	setDocumentLibrary
 
 	 	Attaches a document library to this view container - this library will be used to
-		load all documents before they are added to views, and also provides the menu of 
+		load all documents before they are added to views, and also provides the menu of
 		documents that will be attached as a drop-down.
          */
 	setDocumentLibrary: function ( documentLibrary )
 	{
 		this.documentLibrary = documentLibrary;
-		
+
 		$("#documentMenu").html(this.documentLibrary.getDocumentMenu());
 
 		var t = this;
@@ -1026,7 +1026,7 @@ viewContainer =
 			t.documentLibrary.getDocumentByID(docID, 0, function(callbackID, status, document)
 			{
 				if (status == "")
-				{	
+				{
 					changingView.setDocument(document);
 					t.scrollNewViewToMatchLinked(changingView);
 				}
@@ -1066,7 +1066,7 @@ viewContainer =
 		Probably one of the most important functions here, it takes a local and full ID (the
 		local ID is the one in the document, the full includes all the SAWS namespaces necessary
 		to query the document library), and finds all contentItems related to that ID, marking
-		them with the state supplied (at the moment this is either "Hovered" or "Selected", and 
+		them with the state supplied (at the moment this is either "Hovered" or "Selected", and
 		optionally executing a callback function.
 	*/
 	markRelatedItems: function ( localID, fullID, state, callback )
@@ -1100,7 +1100,7 @@ viewContainer =
 				}
 			});
 		}
-	
+
 		// Ask document library for all tags related to selected tag
 
 		this.documentLibrary.getRelationships(fullID, this.translationMap.translationLanguageCode, function(relationships)
@@ -1113,7 +1113,7 @@ viewContainer =
 			for (var i in relationships)
 			{
 				var relationType = relationships[i].type.split('#')[1];
-				
+
 				var relationLabel = relationships[i].typeLabel;
 				if (relationLabel == '') relationLabel = relationType;
 				var relationText = "";
@@ -1127,7 +1127,7 @@ viewContainer =
 				{
 					relationText += this.translationMap.externalURLText + ' ' + relationships[i].url;
 				}
-		
+
 				titleString += ' - ' + relationLabel + " " + relationText + '<br />';
 			}
 
@@ -1139,7 +1139,7 @@ viewContainer =
 			{
 				titleString = '<span class="title">' + this.translationMap.relationshipsRelatedTo + ':</span><br />' + titleString + this.translationMap.relationshipsClickToAlign;
 			}
-	
+
 			// set the selected/hovered contentItem's title to show relationship ids and documents
 			//$(makeJQueryID(localID)).attr('title', titleString);
 
@@ -1197,13 +1197,13 @@ viewContainer =
 				if (relationships[i].internal == true)
 				{
 					var alreadyOpen = false;
-					
+
 					if (opened.indexOf(relationships[i].documentID) != -1) alreadyOpen = true;
 					for (var v in t.views)
 					{
 						if (t.views[v].document.getID() == relationships[i].documentID) alreadyOpen = true;
 					}
-				
+
 					if (alreadyOpen == false)
 					{
 						opened.push(relationships[i].documentID);
@@ -1217,7 +1217,7 @@ viewContainer =
 					opened.push(relationships[i].url);
 				}
 			}
-	
+
 			t.batchAddViewsWithDocuments(newTabs, [], function()
 			{
 				sourceView.centerViewOn(selectedLocalID);
@@ -1238,7 +1238,7 @@ viewContainer =
 	itemHovered: function ( hoveredLocalID, hoveredFullID, source )
 	{
 		tooltipManager.setItem('related', '<span class="title">' + this.translationMap.relationshipsRelatedTo + ':</span> ' + this.translationMap.loading);
-		tooltipManager.setPosition(source.clientX, source.clientY + 3); 
+		tooltipManager.setPosition(source.clientX, source.clientY + 3);
 
 		if (storage.retrieve('hoverBehaviour') == 'getRelated')
 			this.markRelatedItems(hoveredLocalID, hoveredFullID, 'Hovered');
@@ -1265,7 +1265,7 @@ viewContainer =
 		var columns = "";
 		var offsets = "";
 		var offsetsFound = false;
-		
+
 		for (var i in this.views)
 		{
 			var firstID = this.views[i].getFirstVisibleID();
@@ -1294,10 +1294,11 @@ viewContainer =
 			}
 		}
 
-		var permalinkURL = '/folioscope/' + encodeURIComponent(columns);
+//		var permalinkURL = '/folioscope/' + encodeURIComponent(columns);
+		var permalinkURL = encodeURIComponent(columns);
 
-		if (permalinkURL == '/folioscope/_blank_')
-			permalinkURL = '/folioscope/blank';
+//		if (permalinkURL == '/folioscope/_blank_')
+//			permalinkURL = '/folioscope/blank';
 
 		if (offsetsFound) permalinkURL += '&viewOffsets=' + encodeURIComponent(offsets);
 
@@ -1429,13 +1430,13 @@ View = function ( viewContainer, id )
 			t.viewContainer.scrollViewsToPos(source.currentTarget.scrollTop);
 		}
 
-		
+
 		$('.debug-firstVisible').removeClass('debug-firstVisible');
 		$('.debug-checking').removeClass('debug-checking');
 
 		var found = false;
 		var top = source.currentTarget.scrollTop;
-	
+
 		t.findFirstVisible(t.documentContainer, top);
 		t.viewContainer.updatePermalink();
 
@@ -1519,7 +1520,7 @@ View.prototype =
 	markFirstVisible: function ( firstVisible, offset )
 	{
 		var docID = this.document.getID().split('/')[0];
-		
+
 		if (firstVisible.id.substring(0,docID.length) != docID)
 		{
 			return;
@@ -1539,10 +1540,10 @@ View.prototype =
 		this.cleanUp();
 
 		this.document = document;
-		this.titleChooser.attr('dir', document.getNameDirection());	
+		this.titleChooser.attr('dir', document.getNameDirection());
 		this.titleChooser.html(document.getName());
 		this.documentContainer.attr('dir', document.getContentDirection());
-		this.documentContainer.attr('class', 'documentContent');	
+		this.documentContainer.attr('class', 'documentContent');
 		this.documentContainer.html(document.getContentElement());
 		this.documentContainer.prepend('<div id="' + this.scrollBufferID + '"></div>');
 
@@ -1589,7 +1590,7 @@ View.prototype =
 				{
 					viewContainer.itemSelected(id, t.document.getFragmentFullID(id));
 				}
-			
+
 				viewContainer.addFootnote(t.getFootnoteHTML(t.viewContainer.getNoteDetails(), id));
 			}
 		});
@@ -1600,7 +1601,7 @@ View.prototype =
 			var id = $(source.currentTarget).attr('id');
 			if (id !== undefined)
 			{
-				viewContainer.itemHovered(id, t.document.getFragmentFullID(id), source);	
+				viewContainer.itemHovered(id, t.document.getFragmentFullID(id), source);
 			}
 		});
 
@@ -1627,7 +1628,7 @@ View.prototype =
 		{
 			t.setDisplaySpans("pb" ,state);
 			t.confirmFirstVisible();
-			t.offsetViewOn(t.firstVisibleID, t.firstVisibleOffset);	
+			t.offsetViewOn(t.firstVisibleID, t.firstVisibleOffset);
 		});
 
 		storage.watch(this.document.getID() + '#' + 'surplusBlocks', function(state)
@@ -1640,7 +1641,7 @@ View.prototype =
 		storage.watch(this.document.getID() + '#' + 'linkIDs', function(state)
 		{
 			t.setDisplaySpans("linkID" ,state);
-			t.offsetViewOn(t.firstVisibleID, t.firstVisibleOffset);	
+			t.offsetViewOn(t.firstVisibleID, t.firstVisibleOffset);
 		});
 
 		this.findFirstVisible(this.documentContainer, this.documentContainer.scrollTop());
@@ -1655,7 +1656,7 @@ View.prototype =
 		$('span[data-lemma]').mouseenter(function(source)
 		{
 			tooltipManager.setItem('lemma', '<span class="title">Lemma:</span> ' + $(this).attr('data-lemma'));
-			tooltipManager.setPosition(source.clientX, source.clientY + 3); 
+			tooltipManager.setPosition(source.clientX, source.clientY + 3);
 		});
 
 		$('span[data-lemma]').mouseleave(function()
@@ -1665,7 +1666,7 @@ View.prototype =
 	*/
 	},
 
-	getFootnoteHTML: function ( noteDetails, id ) 
+	getFootnoteHTML: function ( noteDetails, id )
 	{
 		var title = "";
 		var html = "";
@@ -1703,9 +1704,9 @@ View.prototype =
 	},
 
 
-	/* 
+	/*
 	 * makeIntraDocumentLinks
-	 * 
+	 *
 	 * This function takes a note type, and creates the links and hidden segments necessary
 	 * to all it to appear in the footnote, as a pop-up link, or inline.
 	 */
@@ -1726,7 +1727,7 @@ View.prototype =
 
 			var href = this.attributes.href.value;
 			var re = /\([A-Za-z]+(\d*)\)/;
-		
+
 			var values = $(this).text().match(re);
 			var linkText = noteDetail.linkText.replace('#','');
 			if (values != null)
@@ -1737,13 +1738,13 @@ View.prototype =
 			var contentID = noteDetail.id + "text-" + href.substring(skipLength);
 			var content = t.documentContainer.find(makeJQueryID(contentID));
 			var contentHTML = content.html();
-		
+
 			if (contentHTML !== undefined)
 			{
-				linkSpan += '<span class="' + noteDetail.selector.substring(1) +' ignoreHover pv-inline" id="' + noteDetail.id + 'inline' + 
+				linkSpan += '<span class="' + noteDetail.selector.substring(1) +' ignoreHover pv-inline" id="' + noteDetail.id + 'inline' +
 							href.substring(skipLength) + '" title="' + content.attr('title') + '">' + content.html() + '</span>';
 			}
-			
+
 			return linkSpan;
 		});
 
@@ -1759,10 +1760,10 @@ View.prototype =
 	},
 
 
-	/* 
+	/*
 	 * makeInterDocumentLinks
-	 * 
-	 * This function converts remaining a tags (those not covered by the note links) into 
+	 *
+	 * This function converts remaining a tags (those not covered by the note links) into
 	 * two kinds: external links (which will have their target attribute set as target="_blank"
 	 * so that they open in a new window, and "internal" links (those not inside this document
 	 * but going to the parallel viewer in another document (which will have their click function
@@ -1773,7 +1774,7 @@ View.prototype =
 	{
 		var page = this.viewContainer.translationMap.HTML;
 		var t = this;
-		
+
 		$('a', this.container).each(function()
 		{
 			var href = $(this).attr('href');
@@ -1784,7 +1785,7 @@ View.prototype =
 				{
 					event.preventDefault();
 					var target = event.currentTarget.href.split('=');
-					
+
 					if (target.length > 1)
 					{
 						var targetInfo = t.viewContainer.documentLibrary.parseIDInfo(target[1]);
@@ -1800,7 +1801,7 @@ View.prototype =
 								alreadyOpen = true;
 							}
 						}
-					
+
 						if (alreadyOpen == false)
 						{
 							t.viewContainer.batchAddViewsWithDocuments([targetInfo['fullLine']], [150], function()
@@ -1819,7 +1820,7 @@ View.prototype =
 			}
 		});
 	},
-	
+
 	populateDocumentInformationDialog: function ( dialogSelector )
 	{
 		$(dialogSelector).html(this.document.getInformation());
@@ -1884,7 +1885,7 @@ View.prototype =
 		if (this.firstVisibleID === undefined) return this.firstVisibleID;
 
 		var lineParts = this.firstVisibleID.split(':');
-		if (lineParts.length > 2) 
+		if (lineParts.length > 2)
 			return this.document.getID() + ':' + lineParts[2];
 		return this.document.getID();
 	},
@@ -1909,7 +1910,7 @@ View.prototype =
 	{
 		$('.' + targetClass, this.documentContainer).addClass('hidden');
 
-		if (state == "show")	
+		if (state == "show")
 		{
 			$('.' + targetClass, this.documentContainer).removeClass('hidden');
 		}
@@ -1938,7 +1939,7 @@ View.prototype =
 	},
 
 
-	setLeft: function ( newLeft )	
+	setLeft: function ( newLeft )
 	{
 		var t = this;
 		t.container.css('left', newLeft);
@@ -1958,7 +1959,7 @@ View.prototype =
 		var currentValue = storage.retrieve(this.document.getID() + '#' + settingName);
 		var newValue = currentValue;
 		var valuesObject = $(valuesSelector).get(0);
-	
+
 		if (valuesObject.nodeName == 'SELECT')
 		{
 			for (var i in valuesObject.options)
@@ -1971,7 +1972,7 @@ View.prototype =
 				}
 			}
 		}
-		
+
 		if (newValue != currentValue)
 		{
 			storage.store(this.document.getID() + '#' + settingName, newValue);
@@ -1997,7 +1998,7 @@ View.prototype =
 		$('#' + this.scrollBufferID).css('min-height', newSize);
 	},
 
-	
+
 	getScrollTop: function ( )
 	{
 		return this.documentContainer.scrollTop();
