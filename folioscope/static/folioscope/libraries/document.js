@@ -203,7 +203,7 @@ documentLibrary =
 
 			data: { 'query': sparql, 'format': format },
 
-			type: 'POST',
+			type: 'GET',
 
 			success: function ( data )
 			{
