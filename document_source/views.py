@@ -5,4 +5,4 @@ def index(request):
 
 def document(request, source, group, document):
 	context = { 'source': source, 'group': group, 'document': document }
-	return render(request, 'document_source/doc_details.html', context)
+	return render(request, 'document_source/AC__greekLit__BarGr111.FB.saws01.html', context)
