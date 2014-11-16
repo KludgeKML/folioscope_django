@@ -1,5 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) YEAR THE PACKAGE"S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-17 09:06+0100\n"
+"POT-Creation-Date: 2014-11-16 16:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,77 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/folioscope/index.html:7
+#: templates/folioscope/index.html:8
 msgid "folioscope_title"
 msgstr "Folioscope"
 
-#: templates/folioscope/index.html:95
-msgid "click_to_choose_document"
-msgstr "Click to choose document"
+
+msgid "display_apparatus"
+msgstr "Display Apparatus"
+
+msgid "display_notes"
+msgstr "Display Notes"
+
+msgid "display_commentary_notes"
+msgstr "Display Commentary Notes"
+
+msgid "display_source_notes"
+msgstr "Display Source Notes"
+
+msgid "display_apparatus_notes"
+msgstr "Display Apparatus Notes"
+
+
+#~ msgid "click_to_choose_document"
+#~ msgstr "Click to choose document"
+
+msgid "inline_with_the_text"
+msgstr "Inline with the text"
+
+msgid "in_the_footer_when_highlighted"
+msgstr "In the footer when highlighted"
+
+msgid "as_popup_links"
+msgstr "As popup links"
+
+msgid "hidden"
+msgstr "Hidden"
+
+msgid "show"
+msgstr "Show"
+
+msgid "hide"
+msgstr "Hide"
+
+msgid "hover_behaviour"
+msgstr "Hover Behaviour"
+
+msgid "hover_popups"
+msgstr "Hover Popups"
+
+msgid "awld_popups"
+msgstr "<a href=\"http://isawnyu.github.io/awld-js/\" class=\"awld-scope\">AWLD</a> popups</label>"
+
+msgid "popups"
+msgstr "popups"
+
+msgid "do_nothing"
+msgstr "Do Nothing"
+
+msgid "highlight_only"
+msgstr "Highlight Only"
+
+msgid "highlight_and_mark_related"
+msgstr "Highlight and mark related"
+
+msgid "line_numbers"
+msgstr "Line numbers"
+
+msgid "page_numbers"
+msgstr "Page numbers"
+
+msgid "surplus_blocks"
+msgstr "Surplus blocks"
+
+msgid "link_ids"
+msgstr "Link IDs"

@@ -25,3 +25,23 @@ msgstr "Folioskopo"
 #: templates/folioscope/index.html:95
 msgid "click_to_choose_document"
 msgstr ""
+
+
+msgid "inline_with_the_text"
+msgstr "Inline with the text"
+
+msgid "in_the_footer_when_highlighted"
+msgstr "In the footer when highlighted"
+
+msgid "as_popup_links"
+msgstr "As popup links"
+
+msgid "hidden"
+msgstr "Hidden"
+
+msgid "show"
+msgstr "Hide"
+
+msgid "hide"
+msgstr "Hide"
+
